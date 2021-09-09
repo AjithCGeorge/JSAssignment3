@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Assignment 3</title>
+    <style>
+        .circle
+        {
+            height:150px;
+            width:150px;
+            border-radius: 50%;
+        }
+        .g:hover {
+                background-color: #4CAF50; /* Green */
+                color: white;
+                }
+        .r:hover {
+                background-color: #E30B5C;
+                color: white;
+                }
+        .y:hover {
+                background-color: yellow;
+                color: black;
+                }
+
+    </style>
+</head>
+<body>
+    <div style="height:100%; width:100%; background-color:white">
+        <button style="padding: 10px 24px;" onclick="onFn()">Signal mode</button>
+        <button style="padding: 10px 24px;" onclick="offFn()"; >OFF</button>
+        <button class="g" style="padding: 10px 24px; border:5px solid green;"  onclick="onGreen()"; >Green</button>
+        <button class="r" style="padding: 10px 24px; border:5px solid red;"  onclick="onRed()"; >Red</button>
+        <button class="y" style="padding: 10px 24px; border:5px solid yellow;" style="padding: 10px 24px;"  onclick="blinkYellow()"; >blink yellow</button>
+        <div style="height:550px; width:300px; background-color:grey; margin:auto; margin-top:150px; border-radius: 40%;">
+            <div style="height:450px; width:150px; background-color:white; margin:auto; position:relative; top:50px; border-radius: 80%;" >
+                <div id="l1" class="circle" style="background-color:red" >
+
+                </div>
+                <div id="l2" class="circle" style="background-color:black">
+
+                </div>
+                <div id="l3" class="circle" style="background-color:black">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<script>
+
+    var timeout
+    var state=1
+
+
+     function offFn()
+    {
+        clearTimeout(timeout);
+        document.getElementById("l1").style.backgroundColor = "black";
+        document.getElementById("l2").style.backgroundColor = "black";
+        document.getElementById("l3").style.backgroundColor = "black";
+    }
+
+    function blinkYellow()
+    {
+        timeout = setInterval(myYellow, 2000);
+
+    }
+
+    function myYellow()
+    {
+            if(state % 2 == 1)
+            {
+                state=2
+                document.getElementById("l3").style.backgroundColor = "yellow";
+            }
+            else
+            {
+                state=1
+                document.getElementById("l3").style.backgroundColor = "black";
+            }
+    }
+
+    function onGreen()
+    {
+        document.getElementById("l1").style.backgroundColor = "black";
+        document.getElementById("l2").style.backgroundColor = "green";
+        document.getElementById("l3").style.backgroundColor = "black";
+    }
+
+    function onRed()
+    {
+        document.getElementById("l1").style.backgroundColor = "red";
+        document.getElementById("l2").style.backgroundColor = "black";
+        document.getElementById("l3").style.backgroundColor = "black";
+    }
+
+
+    function onFn()
+    {
+
+        timeout = setInterval(myFn, 4000);
+    }
+
+    function myFn()
+    {
+        switch (state)
+        {
+            case 1:
+
+                    state=2
+                    document.getElementById("l1").style.backgroundColor = "black";
+                    document.getElementById("l2").style.backgroundColor = "green";
+                    document.getElementById("l3").style.backgroundColor = "black";
+                    break
+
+            case 2:
+
+                    state=3
+                    document.getElementById("l1").style.backgroundColor = "black";
+                    document.getElementById("l2").style.backgroundColor = "black";
+                    document.getElementById("l3").style.backgroundColor = "yellow";
+                    break
+
+            case 3:
+
+                    state=1
+                    document.getElementById("l1").style.backgroundColor = "red";
+                    document.getElementById("l2").style.backgroundColor = "black";
+                    document.getElementById("l3").style.backgroundColor = "black";
+                    break
+
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>
